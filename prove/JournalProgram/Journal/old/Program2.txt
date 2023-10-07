@@ -1,0 +1,54 @@
+﻿using System.IO; 
+
+//class Program
+{
+// See https://aka.ms/new-console-template for more information
+
+
+    static List<string> entries = new();
+
+//public void Display()
+    {
+        Console.WriteLine("What would you like to do?");
+        Console.WriteLine("1 = Write new entry \n2 = Load Journal from file \n3 = Display all entries \n4 = Quit program");
+        int userInput = Console.ReadLine();
+        if (userInput == 1)
+        {
+            // Code for option 1 (Write new entry) goes here
+                static void Main(string[] args)
+                {
+                    NewEntry entry = new();
+                    do{
+                        entry.GetUserInput();
+                        entries.Add(entry.entry);
+                    }   while (entries.Count < 10);
+
+                    Console.WriteLine(string.Join(", ", entries));
+
+                    // then ask for file name and save
+                }
+        }
+        else if (userInput == 2)
+        {
+            // Code for option 2 (Load Journal from file) goes here
+        }
+        else if (userInput == 3)
+        {
+            // Code for option 3 (Display all entries) goes here
+        }
+        else if (userInput == 4)
+        {
+            // Code for option 4 (Quit program) goes here
+        }
+        else
+        {
+            Console.WriteLine("Invalid option. Please select a valid option (1-4).");
+        }
+
+}
+
+
+
+
+}
+// https://byui-cse.github.io/cse210-course-2023/unit02/develop.html

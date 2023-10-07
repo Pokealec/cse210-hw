@@ -1,0 +1,91 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Create a list of prompts.
+        List<string> prompts = new List<string>
+        {
+            "What was the best part of my day?",
+            "Who was the most interesting person I interacted with today?",
+            "How did I see the hand of the Lord in my life today?",
+            "What was the strongest emotion I felt today?",
+            "If I had one thing I could do over today, what would it be?",
+            "What was my favorite part of today?",
+            "What was good or bad about today?"
+        };
+
+        // Create a journal to store entries.
+        Journal journal = new Journal();
+
+        Console.WriteLine("Greetings. Welcome to Journal App!\nWhat would you like to do? \n1 = Write a new entry \n2 = Load Journal from file \n3 = Display all entries \n4 = Quit program\n");
+        int response = int.Parse(Console.ReadLine());
+
+        if (response == 1)
+        {
+            // Pick a random prompt.
+            Random rand = new Random();
+            string randomPrompt = prompts[rand.Next(prompts.Count)];
+
+            // Display the random prompt.
+            Console.WriteLine("Prompt: " + randomPrompt);
+
+            // Get the user's response.
+            Console.Write("Enter your response: ");
+            string userResponse = Console.ReadLine();
+
+            // Create an entry object.
+            Entry entry = new Entry
+            {
+                EntryDate = DateTime.Now.ToString("yyyy-MM-dd"),
+                Prompt = randomPrompt,
+                Response = userResponse
+            };
+
+            // Add the entry to the journal.
+            journal.Entries.Add(entry);
+
+            // Save the journal to a file.
+            SaveToFile(journal.Entries);
+        }
+        else if (response == 2)
+        {
+            // Load the journal from a file (implement this).
+        }
+        else if (response == 3)
+        {
+            // Display all entries (implement this).
+        }
+        else if (response == 4)
+        {
+            // Quit the program.
+            Environment.Exit(0);
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice. Please select a valid option.");
+        }
+    }
+
+    // Save entries to a file.
+    public static void SaveToFile(List<Entry> entries)
+    {
+        // Set the name for the new file to be saved.
+        string filename = "Journal.txt";
+
+        using (StreamWriter outputFile = new StreamWriter(filename))
+        {
+            foreach (Entry entry in entries)
+            {
+                outputFile.WriteLine(entry.EntryDate);
+                outputFile.WriteLine(entry.Prompt);
+                outputFile.WriteLine(entry.Response);
+            }
+        }
+
+        Console.WriteLine("Journal entries have been saved to " + filename);
+    }
+}

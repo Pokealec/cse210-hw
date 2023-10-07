@@ -1,0 +1,33 @@
+using System;
+using System.Net.Mail;
+public class NewEntry
+{
+    public string entry;
+    public string date;
+
+
+    static string RandomPrompt(){
+
+        string filepath = "prompts.txt";
+        string[] lines = File.ReadAllLines(filepath);
+
+        Random random = new();
+        int randomNumber = random.Next(0, lines.Length);
+
+        string RandPrompt = lines[randomNumber];
+        return RandPrompt;
+
+    }
+    public void GetUserInput(){
+        string YourPrompt = RandomPrompt();
+        Console.WriteLine($"{date}\nYour prompt is: {YourPrompt}\nPress enter when done. \n");
+        entry = Console.ReadLine();
+        date = DateTime.Now.ToString("yyyy-mm-dd");
+    }
+
+
+
+    // after typed entry, user submits and system saves it in journal file
+}
+
+

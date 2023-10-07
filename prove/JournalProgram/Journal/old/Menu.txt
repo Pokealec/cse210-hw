@@ -1,0 +1,21 @@
+using System.IO; 
+
+
+public class Menu{
+
+
+public void Display()
+    {
+        Console.WriteLine("What would you like to do?");
+        Console.WriteLine("1 = Write new entry \n2 = Load Journal from file \n3 = Display all entries \n4 = Quit program");
+        string userInput = Console.ReadLine();
+        if (int.TryParse(userInput, out int number))
+        {
+            if (number = 1){
+
+            }
+
+        }
+        
+    }
+}
