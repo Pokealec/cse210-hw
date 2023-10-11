@@ -1,0 +1,9 @@
+Notes
+
+Class = workspace for making an object (class = phone, instance/object = My iPhone)
+objects have qualities and things they can do
+
+qualities = attributes
+things they can do (Methods) = functions inside classes
+
+
