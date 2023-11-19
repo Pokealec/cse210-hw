@@ -1,0 +1,61 @@
+{
+  "userPoints": 0,
+  "goals": [
+    {
+      "category": "SimpleGoal",
+      "names": [
+        "Timed Run",
+        "Finish Bot"
+      ],
+      "descs": [
+        "Run a mile in under 20 minutes",
+        "Finish your Discord bot"
+      ],
+      "points": [
+        50,
+        150
+      ],
+      "completions": [
+        false,
+        false
+      ]
+    },
+    {
+      "category": "EternalGoal",
+      "names": [
+        "Study Scripture",
+        "Journal Writing"
+      ],
+      "descs": [
+        "Study at least one chapter of your scriptures",
+        "Make a daily journal entry"
+      ],
+      "points": [
+        20,
+        20
+      ],
+      "completions": [
+        false,
+        false
+      ]
+    },
+    {
+      "category": "ChecklistGoal",
+      "names": [
+        "Egg Frying"
+      ],
+      "descs": [
+        "Fry an egg in the morning"
+      ],
+      "points": [
+        20
+      ],
+      "completions": [
+        false
+      ],
+      "timesToComplete": [
+        7
+      ]
+    }
+  ]
+}
