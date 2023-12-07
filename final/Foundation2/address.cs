@@ -3,28 +3,27 @@
 // The address should have a method to return a string all of its fields together in one string (with newline characters where appropriate)
 public class Address
 {
-    private string street1;
-    private string city1;
-    private string state1;
-    private string country1;
+    private string _street; // currently empty variables, will get values when passed from Address() function
+    private string _city;
+    private string _state;
+    private string _country;
 
-    public Address(string street, string city, string state, string country)
+    public Address(string street, string city, string state, string country) // this is where variables come in
     {
-        street1 = street;
-        city1 = city;
-        state1 = state;
-        country1 = country;
+        _street = street;   // this is assigning the private variables with the values passed in
+        _city = city;
+        _state = state;
+        _country = country;
     }
 
-    public bool IsUSA()
+    public string ConciseAddress()
     {
-        return country1 == "USA" ? true : false;
+        return $"{_street}\n{_city}, {_state}\n{_country}";
     }
 
-    public string GetAddress()
+    public string GetCountry()
     {
-        string address = street1 + ", " + city1 + "\n" + state1 + ", " + country1;
-        return address;
+        return _country;
     }
 
 };

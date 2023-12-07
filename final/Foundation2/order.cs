@@ -3,76 +3,61 @@
 // This company is based in the USA. If the customer lives in the USA, then the shipping cost is $5. If the customer does not live in the USA, then the shipping cost is $35.
 // A packing label should list the name and product id of each product in the order.
 // A shipping label should list the name and address of the customer
+using System.Text;
+
 public class Order
 {
-    private List<Product> products1;
-    private Customer customer1;
+    private List<Product> products_ref;
+    private Customer customer_ref;
 
-    public Order(List<Product> products, Customer customer){
-        products1 = products;
-        customer1 = customer;
-    }
-
-    public double CalcShipping(){
-        double shippingCost = customer1.IsItUSA() ? 5 : 35;
-        return shippingCost;
-    }
-
-    public double CalcTotalPrice(){
-        double totalPrice = 0;
-        foreach(Product p in products1){
-            double price = p.GetPrice();
-            totalPrice += price;
-        }
-        double shippingCost = CalcShipping();
-        totalPrice += shippingCost;
-        return totalPrice;
-    }
-
-    public string GeneratePackingLabel()
+    public Order(List<Product> products, Customer customer)
     {
-        string packingLabel = "Packing Label:\n";
-        foreach (Product p in products1) 
+        products_ref = products;
+        customer_ref = customer;
+    }
+
+    public string GetPackingLabel(){
+        StringBuilder packingLabel = new StringBuilder();
+        foreach (var item in products_ref){  // for item in list...
+            packingLabel.AppendLine($"{item.ProductName} - ID: {item.ProductID}");
+        }
+        string PackingLabel = packingLabel.ToString();
+        return PackingLabel;
+    }
+    public string GetShippingLabel(){
+        return $"{customer_ref.CustomerName}\n{customer_ref.CustomerAddress.ConciseAddress()}\nShipping is $5 in USA, $35 outside of USA.";
+    }
+
+    public double GetSubtotal()     // got help from ChatGPT
+    {
+        double total = 0;
+        bool isFromUSA = customer_ref.IsFromUSA(); // fromthismethod.usethisvariable 
+
+        foreach (var product in products_ref)
         {
-            packingLabel += p.GetName() + " - " + p.GetProductID() + "\n";
+            double itemTotal = product.GetItemTotal(); 
+            Console.WriteLine(product.listProduct());
+            total += itemTotal;
         }
-        return packingLabel;
-    }
-
-     public string GenerateShippingLabel()
-    {
-        string shippingLabel = "Shipping Label:\n";
-        shippingLabel += customer1.GetName() + "\n" + customer1.GetAddress();
-        return shippingLabel;
-    }
-
-    public string GenerateTotalCost()
-    {
-        string totalCost = "\nProducts:\n";
-        double totalPrice = CalcTotalPrice();
-        foreach (Product p in products1) 
+        if (isFromUSA) // if true
         {
-            totalCost += p.GetName() + " (" + p.GetProductID() + ") - " + "$" + p.GetPrice() + " x " + p.GetQuantity() + " = " + p.GetPrice() + "\n";
+            total += 5.00;
         }
-        
-        totalCost += "Shipping Cost: $" + CalcShipping() + "\n";
-        totalCost += "Total: $" + CalcTotalPrice();
-        
-        return totalCost;
+        else
+        {
+            total += 35.00;
+        }
+        return total;
     }
-
-    public void DisplayResults()
-    {
-        string packingLabel = GeneratePackingLabel();
-        string shippingLabel = GenerateShippingLabel();
-        string totalCost = GenerateTotalCost();
-
-        Console.WriteLine(packingLabel);
-        Console.WriteLine(shippingLabel);
-        Console.WriteLine(totalCost);
-    }
-
-
-
+public void DisplayResults()
+{
+    Console.WriteLine("Packing Label:");
+    Console.WriteLine(GetPackingLabel());
+    Console.WriteLine("Shipping Label:");
+    Console.WriteLine(GetShippingLabel());
+    Console.WriteLine("\nProducts and Prices:");  // Add a newline for separation
+    Console.WriteLine("Includes Shipping Cost (see above)");
+    Console.WriteLine($"Subtotal: {GetSubtotal()}");
+}
 
 }

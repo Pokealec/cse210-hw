@@ -2,41 +2,30 @@
 // The price of this product is computed by multiplying the price and the quantity.
 public class Product
 {
-    private string name1;
-    private string productID1;
-    private double price1;
-    private int quantity1;
+    private string name_ref;
+    private string productID_ref;
+    private double price_ref;
+    private int quantity_ref;
 
-    public Product(string name, string productID, double price, int quantity)
+    public Product(string productName, string productID, double price, int quantity)
     {
-        name1 = name;
-        productID1 = productID;
-        price1 = price;
-        quantity1 = quantity;
+        name_ref = productName;
+        productID_ref = productID;
+        price_ref = price;
+        quantity_ref = quantity;
     }
 
-    public int GetPrice(int price, int quantity){
-        return price * quantity;
-    }
+    public string ProductName => name_ref;
+    public string ProductID => productID_ref;
 
-    public string GetName()
-    {
-        return name1;
+    public string listProduct(){
+        return $"{name_ref} (ID: {productID_ref}) at {price_ref} per item. Quantity: {quantity_ref}";
     }
-    public string GetProductID()
-    {
-        return productID1;
+    public string GetItemQuantity(){
+        return $"{name_ref} - x{quantity_ref}";
     }
-
-    public double GetPrice()
-    {
-        return price1;
+    public double GetItemTotal(){
+        return price_ref * quantity_ref;
     }
-
-    public int GetQuantity()
-    {
-        return quantity1;
-    }
-
 
 }
